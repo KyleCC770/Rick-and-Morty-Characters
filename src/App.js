@@ -49,7 +49,7 @@ const App = () => {
           />
           <Route
             exact
-            path="/episodes"
+            path="/episodes/:id"
             render={() => (
               <CharacterEpisodes items={items} isLoading={isLoading} />
             )}
