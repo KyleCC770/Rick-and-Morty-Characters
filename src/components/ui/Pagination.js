@@ -2,7 +2,7 @@ import React from "react";
 
 export default function Pagination({ goToNextPage, goToPrevPage }) {
   return (
-    <div>
+    <div className="btn-container">
       <button className="btn" onClick={goToNextPage}>
         Previous
       </button>

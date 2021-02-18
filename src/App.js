@@ -2,8 +2,15 @@ import React, { useState, useEffect } from "react";
 import Header from "./components/ui/Header";
 import Pagination from "./components/ui/Pagination";
 import CharacterGrid from "./components/characters/CharacterGrid";
+import CharacterEpisodes from "./components/characters/CharacterEpisodes";
 import Search from "./components/ui/Search";
 import axios from "axios";
+import {
+  Switch,
+  Route,
+  BrowserRouter as Router,
+  Redirect,
+} from "react-router-dom";
 import "./App.css";
 
 const App = () => {
@@ -26,10 +33,30 @@ const App = () => {
 
   return (
     <div className="container">
-      <Header />
-      <Search getQuery={(q) => setQuery(q)} />
-      <CharacterGrid isLoading={isLoading} items={items} />
-      <Pagination />
+      <Router>
+        <Switch>
+          <Route
+            path="/"
+            exact
+            render={() => (
+              <div>
+                <Header />
+                <Search getQuery={(q) => setQuery(q)} />
+                <CharacterGrid isLoading={isLoading} items={items} />
+                <Pagination />
+              </div>
+            )}
+          />
+          <Route
+            exact
+            path="/episodes"
+            render={() => (
+              <CharacterEpisodes items={items} isLoading={isLoading} />
+            )}
+          />
+          <Redirect to="/" />
+        </Switch>
+      </Router>
     </div>
   );
 };

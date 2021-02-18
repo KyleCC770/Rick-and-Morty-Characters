@@ -1,6 +1,8 @@
 import React from "react";
 import CharacterItem from "./CharacterItem";
+
 import Spinner from "../ui/Spinner";
+import { Link } from "react-router-dom";
 
 const CharacterGrid = ({ items, isLoading }) => {
   return isLoading ? (
@@ -8,7 +10,9 @@ const CharacterGrid = ({ items, isLoading }) => {
   ) : (
     <section className="cards">
       {items.results.map((item) => (
-        <CharacterItem key={item.id} item={item}></CharacterItem>
+        <Link to="/episodes">
+          <CharacterItem key={item.id} item={item}></CharacterItem>
+        </Link>
       ))}
     </section>
   );
